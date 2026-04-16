@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-glass-bg: rgba(255, 255, 255, 0.12);
+  --color-glass-border: rgba(255, 255, 255, 0.18);
+  --color-accent-blue: #4facfe;
+  --color-accent-purple: #9b51e0;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-white min-h-screen relative overflow-hidden;
+    background: #0f0c29;
+    background: radial-gradient(circle at top left, #24243e, #302b63, #0f0c29);
+  }
+
+  /* Mesh Gradient Background */
+  body::before {
+    content: "";
+    @apply fixed inset-0 -z-10;
+    background: 
+      radial-gradient(circle at 80% 20%, rgba(79, 172, 254, 0.4) 0%, transparent 40%),
+      radial-gradient(circle at 10% 80%, rgba(155, 81, 224, 0.3) 0%, transparent 40%);
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-glass-bg backdrop-blur-xl border border-glass-border rounded-[24px];
+  }
+  
+  .glass-card {
+    @apply bg-glass-bg backdrop-blur-lg border border-glass-border rounded-[20px];
+  }
+
+  .glass-input {
+    @apply bg-white/5 border border-white/10 rounded-xl focus:ring-2 focus:ring-accent-blue outline-none transition-all text-white placeholder:text-white/40;
+  }
+}
